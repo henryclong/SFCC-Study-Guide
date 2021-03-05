@@ -22,8 +22,8 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
     - [ ] Given a sandbox environment, use the Business Manager to add a new site to the instance, configuring the default currency and taxation type according to business requirements.
     - [ ] Given a recently created B2C site, assign the storefront data configurations according to business requirements.
 - [ ] Work With a B2C Site
-    - [ ] Given a Business Manager task, work with the product data model to manage products and product search model, their categorization, and associated inventory and pricebooks.
-    - [ ] Given a configuration for tasks, such as payment and shipping information, use Business Manager to complete storefront orders.
+    - [x] Given a Business Manager task, work with the product data model to manage products and product search model, their categorization, and associated inventory and pricebooks.
+    - [x] Given a configuration for tasks, such as payment and shipping information, use Business Manager to complete storefront orders.
     - [ ] Given a configuration task, use Business Manager to work with Content Assets, Page Designer, Content Slots, and Content Folders.
 - [ ] Data Management Using Business Manager Usage
     - [ ] Given a business requirement, modify site search preferences and settings to enable searching for a specified term or product attribute.
