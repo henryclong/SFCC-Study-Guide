@@ -15,6 +15,7 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Application Development](application-development.md) | 53%
 
 ## Study Guide To-do
+![Progress](https://progress-bar.dev/10/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
 - [ ] Commerce Setup
     - [x] Given a sandbox environment, configure an IDE to use WebDAV to deploy cartridges to the correct version directories.
     - [x] Given a sandbox instance and data import files, import files using the Business Manager Import/Export modules.
@@ -26,11 +27,11 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
     - [x] Given a configuration for tasks, such as payment and shipping information, use Business Manager to complete storefront orders.
     - [ ] Given a configuration task, use Business Manager to work with Content Assets, Page Designer, Content Slots, and Content Folders.
 - [ ] Data Management Using Business Manager Usage
-    - [ ] Given a business requirement, modify site search preferences and settings to enable searching for a specified term or product attribute.
-    - [ ] Given a business requirement, create and configure a new search refinement and sorting definition that can be used on the storefront.
-    - [ ] Given a debugging requirement or code, configure the logging categories and access the logs in Business Manager.
-    - [ ] Given business requirements, extend the storefront to expose a new attribute on an existing system object type.
-    - [ ] Given a business need to store custom data, determine if a custom object is needed and create and configure as required.
+    - [x] Given a business requirement, modify site search preferences and settings to enable searching for a specified term or product attribute.
+    - [x] Given a business requirement, create and configure a new search refinement and sorting definition that can be used on the storefront.
+    - [x] Given a debugging requirement or code, configure the logging categories and access the logs in Business Manager.
+    - [x] Given business requirements, extend the storefront to expose a new attribute on an existing system object type.
+    - [x] Given a business need to store custom data, determine if a custom object is needed and create and configure as required.
     - [ ] Given a problem or performance issue and data, use relevant tools to inspect code performance and determine and implement solutions (cache configuration, profilers, etc) to resolve this issue.
     - [ ] Given a specification and a sandbox instance, configure OCAPI permissions for Data and Shop APIs.
     - [ ] Given a service configuration, recognize how they are applicable to the development process.
