@@ -2,11 +2,12 @@
 
 The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge and skills related to the following objectives. A candidate should have hands-on experience with B2C Commerce and should be able to demonstrate knowledge and expertise in each of the areas below.
 
-## Trailhead Links
-- Certification: https://trailhead.salesforce.com/credentials/b2ccommercedeveloper
-- Exam Guide: https://trailhead.salesforce.com/help?article=Salesforce-Certified-B2C-Commerce-Developer-Exam-Guide
+## SFCC B2C Links
+- [B2C Developer Certification](https://trailhead.salesforce.com/credentials/b2ccommercedeveloper)
+- [B2C Developer Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-B2C-Commerce-Developer-Exam-Guide)
+- [B2C Documentation](https://documentation.b2c.commercecloud.salesforce.com/)
 
-## SFCC Exam Outline
+## SFCC B2C Exam Outline
 | Exam Contents | Percentage
 |-|-
 | [Commerce Setup](commerce-setup.md) | 11%
@@ -15,7 +16,7 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Application Development](application-development.md) | 53%
 
 ## Study Guide To-do
-![Progress](https://progress-bar.dev/10/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
+![Progress](https://progress-bar.dev/13/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
 - [ ] Commerce Setup
     - [x] Given a sandbox environment, configure an IDE to use WebDAV to deploy cartridges to the correct version directories.
     - [x] Given a sandbox instance and data import files, import files using the Business Manager Import/Export modules.
@@ -32,9 +33,9 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
     - [x] Given a debugging requirement or code, configure the logging categories and access the logs in Business Manager.
     - [x] Given business requirements, extend the storefront to expose a new attribute on an existing system object type.
     - [x] Given a business need to store custom data, determine if a custom object is needed and create and configure as required.
-    - [ ] Given a problem or performance issue and data, use relevant tools to inspect code performance and determine and implement solutions (cache configuration, profilers, etc) to resolve this issue.
-    - [ ] Given a specification and a sandbox instance, configure OCAPI permissions for Data and Shop APIs.
-    - [ ] Given a service configuration, recognize how they are applicable to the development process.
+    - [x] Given a problem or performance issue and data, use relevant tools to inspect code performance and determine and implement solutions (cache configuration, profilers, etc) to resolve this issue.
+    - [x] Given a specification and a sandbox instance, configure OCAPI permissions for Data and Shop APIs.
+    - [x] Given a service configuration, recognize how they are applicable to the development process.
 - [ ] Application Development
     - [ ] Given a development task, code ISML templates that use functionality such as: local include, remote include, components, and other ISML tags.
     - [ ] Use debugging best practices and techniques to troubleshoot scripts and controllers and verify outcomes.
