@@ -49,6 +49,11 @@
     - https://documentation.b2c.commercecloud.salesforce.com/DOC3/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fordering%2Fb2c_update_orders.html
 
 ## Given a configuration task, use Business Manager to work with Content Assets, Page Designer, Content Slots, and Content Folders.
+- [Manage Content Assets](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fcontent%2Fb2c_working_with_content_assets.html)
+- [Page Designer](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fcontent%2Fb2c_content_assets.html)
+    - [Page Designer Resources](https://developer.commercecloud.com/s/article/PageDesigner)
+- [Content Slots](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fcontent%2Fb2c_content_assets.html)
+- [Content Folders](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fpage_designer%2Fb2c_creating_pd_pages.html)
 - Additional Resources
     - https://trailhead.salesforce.com/content/learn/modules/b2c-page-designer-merchandiser
     - https://trailhead.salesforce.com/content/learn/modules/cc-create-functional-consulting-documents/cc-doc-content-assets-and-slots

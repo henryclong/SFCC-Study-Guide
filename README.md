@@ -17,17 +17,17 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 
 ## Study Guide To-do
 ![Progress](https://progress-bar.dev/14/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
-- [ ] Commerce Setup
+- [x] Commerce Setup
     - [x] Given a sandbox environment, configure an IDE to use WebDAV to deploy cartridges to the correct version directories.
     - [x] Given a sandbox instance and data import files, import files using the Business Manager Import/Export modules.
     - [x] Given the code for a storefront site, add the correct sequence of cartridge names to the provided cartridge path.
     - [x] Given a sandbox environment, use the Business Manager to add a new site to the instance, configuring the default currency and taxation type according to business requirements.
-    - [ ] Given a recently created B2C site, assign the storefront data configurations according to business requirements.
-- [ ] Work With a B2C Site
+    - [x] Given a recently created B2C site, assign the storefront data configurations according to business requirements.
+- [x] Work With a B2C Site
     - [x] Given a Business Manager task, work with the product data model to manage products and product search model, their categorization, and associated inventory and pricebooks.
     - [x] Given a configuration for tasks, such as payment and shipping information, use Business Manager to complete storefront orders.
-    - [ ] Given a configuration task, use Business Manager to work with Content Assets, Page Designer, Content Slots, and Content Folders.
-- [ ] Data Management Using Business Manager Usage
+    - [x] Given a configuration task, use Business Manager to work with Content Assets, Page Designer, Content Slots, and Content Folders.
+- [x] Data Management Using Business Manager Usage
     - [x] Given a business requirement, modify site search preferences and settings to enable searching for a specified term or product attribute.
     - [x] Given a business requirement, create and configure a new search refinement and sorting definition that can be used on the storefront.
     - [x] Given a debugging requirement or code, configure the logging categories and access the logs in Business Manager.

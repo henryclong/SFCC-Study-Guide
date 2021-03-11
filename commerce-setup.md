@@ -58,5 +58,4 @@ app-custom-cart-cloudkicks:app_custom_cloudkicks-us:LINK_bazaarvoice:LINK_wordpr
     - Click "Apply" to create the new site
 
 ## Given a recently created B2C site, assign the storefront data configurations according to business requirements.
-- Additional Resources
-    - https://trailhead.salesforce.com/content/learn/modules/b2c-solution-functional-launch-readiness/b2c-review-business-manager?trail_id=apply-a-salesforce-b2c-commerce-functional-solution
+- [Configure SFRA](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fsfra%2Fb2c_configuring_sfra.html)
