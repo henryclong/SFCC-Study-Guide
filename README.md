@@ -16,7 +16,7 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Application Development](application-development.md) | 53%
 
 ## Study Guide To-do
-![Progress](https://progress-bar.dev/14/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
+![Progress](https://progress-bar.dev/16/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
 - [x] Commerce Setup
     - [x] Given a sandbox environment, configure an IDE to use WebDAV to deploy cartridges to the correct version directories.
     - [x] Given a sandbox instance and data import files, import files using the Business Manager Import/Export modules.
