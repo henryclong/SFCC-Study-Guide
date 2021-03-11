@@ -52,10 +52,10 @@ app-custom-cart-cloudkicks:app_custom_cloudkicks-us:LINK_bazaarvoice:LINK_wordpr
     - https://trailhead.salesforce.com/content/learn/modules/b2c-cartridges/b2c-cartridges-explore#cartridge-path
 
 ## Given a sandbox environment, use the Business Manager to add a new site to the instance, configuring the default currency and taxation type according to business requirements.
-- Additional Resources
-    - https://trailhead.salesforce.com/content/learn/modules/architecture-of-commerce-cloud-digital/cc-digital-configuration
-    - https://trailhead.salesforce.com/content/learn/modules/architecture-of-commerce-cloud-digital/cc-digital-import-export
-    - https://trailhead.salesforce.com/content/learn/modules/cc-digital-for-developers/cc-business-manager
+- [Create a Site in Business Manager](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fsite_development%2Fb2c_creating_a_new_site_in_business_manager.html&resultof=%22%64%65%66%61%75%6c%74%22%20%22%63%75%72%72%65%6e%63%79%22%20%22%63%75%72%72%65%6e%63%22%20)
+    - Select "New" under `Administration > Sites > Manage Sites` to open the New Site page
+    - ID, Currency and taxation are defined on the New Site page
+    - Click "Apply" to create the new site
 
 ## Given a recently created B2C site, assign the storefront data configurations according to business requirements.
 - Additional Resources

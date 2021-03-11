@@ -16,12 +16,12 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Application Development](application-development.md) | 53%
 
 ## Study Guide To-do
-![Progress](https://progress-bar.dev/13/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
+![Progress](https://progress-bar.dev/14/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
 - [ ] Commerce Setup
     - [x] Given a sandbox environment, configure an IDE to use WebDAV to deploy cartridges to the correct version directories.
     - [x] Given a sandbox instance and data import files, import files using the Business Manager Import/Export modules.
     - [x] Given the code for a storefront site, add the correct sequence of cartridge names to the provided cartridge path.
-    - [ ] Given a sandbox environment, use the Business Manager to add a new site to the instance, configuring the default currency and taxation type according to business requirements.
+    - [x] Given a sandbox environment, use the Business Manager to add a new site to the instance, configuring the default currency and taxation type according to business requirements.
     - [ ] Given a recently created B2C site, assign the storefront data configurations according to business requirements.
 - [ ] Work With a B2C Site
     - [x] Given a Business Manager task, work with the product data model to manage products and product search model, their categorization, and associated inventory and pricebooks.
