@@ -54,7 +54,7 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 - [Salesforce B2C Commerce Developer (CCD-101) \| Study Guide](https://www.testpreptraining.com/tutorial/salesforce-b2c-commerce-developer-ccd-101/)
 - [Exploring on Salesforce: Tips for passing Salesforce Certified Commerce Cloud Digital Developer](http://santanuboral.blogspot.com/2018/07/Commerce-Cloud-Digital-Dev.html)
 - [Salesforce Commerce Cloud ( Demandware ) Head Start \| Udemy](https://www.udemy.com/course/salesforce-commerce-cloud/)
-- [11 Days of SFRA](https://www.perimeterx.com/tech-blog/johnny-tordgeman)
+- [11 Days of SFRA](https://medium.com/perimeterx/tagged/sfra)
     - [Day 1: What Is SFRA?](https://www.perimeterx.com/tech-blog/2020/11-days-of-salesforce-storefront-reference-architecture-sfra-day-1-what-is-sfra/)
     - [Day 2: Setting Up Your Development Environment](https://www.perimeterx.com/tech-blog/2020/11-days-of-salesforce-storefront-reference-architecture-sfra-day-2-setting-up-your-development-environment/)
     - [Day 3: Creating a Storefront](https://www.perimeterx.com/tech-blog/2020/11-days-of-salesforce-storefront-reference-architecture-sfra-day-3-creating-a-storefront/)
