@@ -19,6 +19,9 @@
 - [ISML tag documentation](https://documentation.b2c.commercecloud.salesforce.com/DOC3/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fisml%2Fb2c_isml.html)
 ## Use debugging best practices and techniques to troubleshoot scripts and controllers and verify outcomes.
 ## Given a requirement, create and extend the functionality of a JavaScript controller that leverages models, decorators, factories, or helpers following API best practices and renders a template or returns a JSON response.
+- [Customize Templates (Decorator Templates in SFRA)](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fsfra%2Fb2c_customizing_templates.html)
+- [JavaScript Factory Functions with ES6+](https://medium.com/javascript-scene/javascript-factory-functions-with-es6-4d224591a8b1)
+    - Factories are stored in the `cartridge/scripts/factories` directory
 - Returning a JSON response from a controller
     - [11 Days: Playing with Templates (A JSON Response)](https://www.perimeterx.com/tech-blog/2020/11-days-of-salesforce-storefront-reference-architecture-sfra-day-11-playing-with-templates/)
 ## Given a business requirement and design for a new marketing page, develop page types and components to allow a marketer to build a page with the Page Designer tool.
@@ -40,6 +43,9 @@
 - Using services with URL paramaters
     - [11 Days: More Services Framework](https://www.perimeterx.com/tech-blog/2020/11-days-of-salesforce-storefront-reference-architecture-sfra-day-7-more-services-framework/)
 ## Given a use case, extend functionality or capture an event using hook extension points.
+- [SFRA Hooks](https://documentation.b2c.commercecloud.salesforce.com/DOC3/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fsfra%2Fb2c_sfra_hooks.html&resultof=%22%68%6f%6f%6b%22%20)
+> Hooks are executed in the order of the cartridges on the path.
+- [OCAPI Hooks](https://documentation.b2c.commercecloud.salesforce.com/DOC3/index.jsp?topic=%2Fcom.demandware.dochelp%2FOCAPI%2Fcurrent%2Fusage%2FHooks.html)
 ## Given code that violates documented best practices, identify the issues and modify the code to conform with best practices including performance and scalability.
 ## Given a business requirement, use OCAPI Shop and Data APIs to enable interoperability with an external system.
 ## Given a business requirement to perform a scheduled task, develop jobs and code job scripts.
