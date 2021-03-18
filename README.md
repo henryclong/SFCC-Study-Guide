@@ -15,6 +15,8 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Data Management Using Business Manager Usage](data-management-using-business-manager-usage.md) | 24%
 | [Application Development](application-development.md) | 53%
 
+[Develop for Salesforce B2C Commerce](b2c-developer.md)
+
 ## Study Guide To-do
 ![Progress](https://progress-bar.dev/16/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
 - [x] Commerce Setup
