@@ -85,3 +85,65 @@
 - List the two business object best practices.
     - Use system objects instead of custom objects to facilitate SFRA upgrades and cut down on extraneous customization
     - Use system attributes instead of custom attributes whenever possible
+
+## [Architecture of Salesforce B2C Commerce](https://trailhead.salesforce.com/en/content/learn/modules/architecture-of-commerce-cloud-digital?trail_id=develop-for-commerce-cloud&trailmix_creator_id=strailhead)
+
+### Get Started Configuring Your B2C Commerce Sites
+
+- List the instance types.
+    - Sandbox
+    - Staging
+    - Development
+    - Production
+- Explain what the instance types are used for.
+    - Sandbox
+        - For development
+    - Staging
+        - Where changes are made before being pushed to development or production
+    - Development
+        - For testing changes made to staging
+    - Production
+        - The live storefront
+- Describe how sites relate to organizations.
+    - Multiple sites in an instance are grouped together in a single organization
+- Describe how a multisite realm is managed.
+    - Multiple sites within a realm can share a master catalog, share some admin settings, and be managed from different geographical locations
+
+### Learn About Importing and Exporting Data
+
+- Give two reasons why the import/export schema files are important.
+    - Schemas standardize the structure of the data being imoprted/exported
+    - Only data that matches the schema will be accepted
+- List two types of data that are typically imported.
+    - Product details
+        - SKU numbers
+        - Product descriptions
+        - Sizes
+        - Images
+        - Prices
+        - Video
+    - Coupon codes
+- Describe two import/export modes.
+    - Merge
+        - Update an object, or create an object if one does not already exist
+    - Update
+        - Update an existing object
+    - Replace
+        - Create a new object with the imported data
+    - Delete
+        - Remove an existing object
+- Describe the export process.
+    - Using business manager or a custom controller, export the database objects to an xml file
+    - Transfer files from the instance to the merchant back end
+    - Configure a secure connection if required for security compliance
+- Explain why a delta feed is important.
+    - Delta feeds contain only the changes from one export to another
+    - These are smaller, which facilitates archiving, importing, and troubleshooting
+
+###  Learn About B2C Commerce Replication
+
+- Describe the process flow between instances.
+- List three types of data that are replicated.
+- List two differences between the import/export and replication processes.
+- Describe two ways to control replication.
+- Explain the benefit of replication tasks.
