@@ -143,7 +143,103 @@
 ###  Learn About B2C Commerce Replication
 
 - Describe the process flow between instances.
+    - A replication process is created in business manager
+    - Multiple processes can be defined, each with different tasks
+    - Schedule process time frame
+    - Types of replication
+        - Transfer
+            - Transfers data between instances
+        - Publish
+            - Publishes transfered data
+            - Published data must match transfered data
 - List three types of data that are replicated.
+    - Catalogs
+    - Promotions
+    - Coupons
+    - Not:
+        - Orders
+        - Inventory lists
+        - Business Manager profiles and logins
 - List two differences between the import/export and replication processes.
+    - Replication moves data between instances
+    - Import/export moves data between B2C Commerce and external systems
 - Describe two ways to control replication.
+    - Specify which replication tasks to include
+    - Specify the time fraame in which  to complete the replication
 - Explain the benefit of replication tasks.
+    - Replication facilitates data/code transfer between instances, and reduces any risk associated with import/export
+
+## [Salesforce B2C Commerce Cartridges](https://trailhead.salesforce.com/en/content/learn/modules/b2c-cartridges?trail_id=develop-for-commerce-cloud&trailmix_creator_id=strailhead)
+
+### Get to Know B2C Commerce Cartridges
+
+- List three ways you can use a cartridge.
+    - Controllers
+    - Form definitions
+    - Scripts
+    - Static content (text, images, CSS files, and client-side JavaScript files)
+    - Templates
+    - Web Services Description Language (WSDL) files
+    - Page Designer experiences (SFRA only)
+- Explain why you need at least one custom cartridge to implement a storefront.
+    - A custom cartridge is needed for customization, otherwise all that displays is the default SFRA storefront
+- Describe where you can find the code version number.
+    - `Administration > Site Development > Code Deployment` within business manager
+- Explain the purpose of the cartridge path.
+    - The cartridge path determines the precedence between cartridges. If a template is customized in two different cartridges, the one further left on the cartridge path will be used
+    - This is in contrast to the cartridge stack, which just specifies the level of customization of a specific cartridge in relation to its peers
+
+### Explore Reference Architecture Cartridges
+
+- List what’s typically in a Storefront Reference Architecture (SFRA) cartridge stack.
+    - Custom
+        - Custom cartridges purpose built for a specific storefront
+    - LINK
+        - Cartridges built by LINK partnerst that integrate third-party functionality
+    - Plugin
+        - Integrates optional features to SFRA
+    - Base
+        - Core SFRA functionality
+- Explain why it’s important to keep the SFRA base cartridges edit-free.
+    - Keeping base cartridges edit-free facilitates smooth SFRA upgrades
+- Classify the types of files in each base cartridge.
+    - app_storefront_base
+        - Contains the MVC models
+    - bm_app_storefront_base
+        - Contains files for Page Designer and business manager customization
+    - modules
+        - Contains objects that facilitate client server communication
+- List what's typically in the cartridges folder.
+    - Storefront_sg_controllers
+        - Contains controllers, scripts, and templates for business processing
+    - Storefront_sg_core
+        - Contains templates and forms for the storefront UI
+    - Storefront_sg_pipelines
+        - Contains legacy pipelines and scripts for business processing
+
+### Upload and Configure Cartridges
+
+- Explain which tools you can use to upload Storefront Reference Architecture (SFRA).
+    - dwpload
+    - sgmf-scripts
+- Explain the benefit of disabling page caching.
+    - Disabling page caching lets developers see changes on the storefront without waiting for the cache to expire
+- List three ways to view cartridges on the server.
+    - Business Manager
+    - Web URL
+    - WebDAV
+- Explain why rule-based storefront URLs should be disabled.
+    - Rule-based storefront URLs may conflict with a default controller URL currently being worked on
+
+### Customize Cartridges
+
+- List three things you can do with sgmf scripts.
+    - Upload a file to a sandbox.
+    - Upload a cartridge.
+    - Run tests on certain files or directories.
+    - Compile css or js files.
+    - Lint scss or js files.
+    - Create a new cartridge structure.
+- Describe how you can override the app_storefront_base cartridge.
+- Explain how the global .scss file inherits styles.
+- Describe how to include JavaScript modules from other cartridges.
