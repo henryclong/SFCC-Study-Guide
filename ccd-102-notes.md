@@ -1,0 +1,782 @@
+# SFCC B2C Developer
+
+- 1 Month of sandbox access
+- Will provide cert advice at end
+- Sandbox Number is `045`
+
+
+- Actual API is Java
+  - JS is running on JRE(?)  in a ruby interpreter
+  - No programming actually happens in Java
+- Make sure node version `4.0 =<  version < 12.0.0` for CLI exercises
+
+## Slide Notes
+
+### Day 1 - Monday
+
+- Salesforce B2C Commerce Integrations
+  - B2C Commerce is not the source if truth for product inventory
+- Instances
+- B2C Commerce Infrastructure
+  - POD: Point of Delivery
+    - Salesforce owned, in third party data centers
+  - Realm: Within POD
+    - Cannot communicate directtly with each other
+    - Must import/export
+    - PIG: Primary Instance Group
+      - Development, Staging, Production
+      - Code typically not transferred directly from sandbox to staging
+        - Typically stored in and pushed from VCS
+    - SIG: Secondary Instance Group
+      - Realm Sandboxes
+      - Demo Sandbox
+        - Automatically wiped and reloaded every release with a fresh copy of Site Genesis and SFRA
+        - Can always compare with a vanilla version of the code, in case of bugs on a sandbox
+        - Can be used for initial integration testing (before staging), but should be temporary
+  - Typically 8-16 releases a year, never in the fourth quarter
+- Storefront Reference Architecture (SFRA)
+  - OOB Blueprint
+- SFRA Cartridge Stack
+  - Whenever possible, go through SFRA
+  - Can alter SFRA core codebase, but shouldn't if at all possible
+    - Salesforce will not help with issues arising from this
+  - If multiple sites share branding, separate common functionality and site specific functionality
+- Model View Controller (MVC) Architectural Pattern
+  - Promotes modular and maintainable coe
+  - Pattern, not requirement
+- Business Manager
+  - 15 minute inactivity timeout for login
+    - For PCI Compliance
+    - BM doesn't know if BM is connected to a Sandbox or Production
+  - DWithEase (Demandware with Ease)  
+    - Not officially recommended
+    - Used to bypass logout timer
+    - Only use in sandbox, bypassing 15min logout violates PCI
+  - Sandboxes are white on black, prod is red
+- Knowledge Check
+  - Name the architectural pattern of SFRA
+    - MVC
+  - Two BM features
+    - Import/export data, update products, update content slots
+- Break
+- 2-1: Access SFRA
+  - Typically site imports only import data
+  - SFRA import is unique in that it imports data + code
+- Storefront & Master Catalog Structure
+  - Each storefront has
+    - One or more master catalogs
+    - One storefront catalog
+      - Defines the navigation for the site
+- 2-2: Share catalog data between sites
+  - ids are case sensitive
+  - New site name will appear in URL, encoded (%20 for spaces)
+  - Changes will not be posted until `apply` button is pressed
+    - Salesforce screens will give warning if there are unsaved changes
+    - Demandware screens will not display a warning
+  - Brand new site will have the demandware base code if nothing else is deployed (green background with salesforce logo)
+  - Categories in storefront catalog define site navigation
+    - Categories are actually `Search-Show?gid=CATEGORY_ID`
+    - Empty categories do not appear in navigation
+      - Empty search does not generate category page
+- 2-4
+- Knowledge Check
+  - SFRA code can be accessed through Github
+    - True
+  - You do not need to rebuild search indexes for a site
+    - False
+- Cartridge
+  - What is a cartridge?
+    - A folder with a set of resources
+  - Provides specific storefront features or integrations
+  - Has specific subfolders for different types of resources
+- Cartridge Directory Structure
+  - Compiled/minified js/scss is sent to `static` directory
+  - No sub directories in `controllers` directory
+  - Any JS that isn't a controller or model goes in the scripts folder
+    - Helpers, etc.
+- Cartridge Path
+  - Determines what gets executed in what order
+- Cartridge Execution
+  - Cartridges are prioritized in left to right order
+- Cartridge Path COnsiderations
+  - Plugins are developed against the base cart, not each other
+    - May contain conflicting code
+      - `plugin_catrdridge_merge` handles conflicts between plugin cartridges
+      - Included by default in all-in-one code base from BM
+      - Unlikely to happen in LINK carts, but may
+        - Try to use unique name spaces
+- SFRA Modules
+  - Uses CommonJS for common functionality
+- 3-1: Work with Plugin Cartridges
+  - lib_productlist is required for wishlist and gift registry plugins
+  - To uninstall a plugin (such as wishlist) disable it in the custom preferences and remove it from the cartridge path
+- 3-3: Create a New Code Version
+  - For dw.json password, use WebDAV access key instead of actual password
+  - To upload catrridges with pro
+    - `Prophet (Cloud Icon) > More Actions... > Prophet: Enable Upload`
+- Knowledge Check
+  - What are the two main directories you'll  find in the SFRA
+    - Modules
+  - Why is the order of the cartridges on the cartridge path
+important?
+    - Determines the precedence of functionality
+- Controller
+  - Server side script that handles requests
+  - Manages data flow in application
+  - Written in JS and B2C commerce script
+- B2C Commerce  Script
+  - Based on JS
+    - Used in controllers and ISML Templates
+      - Not recommended  to use directly in template
+  - When one says "B2C Commerce Script", it means a script that accesses the API
+- require paths
+  - `~/` Look in root of cart
+  - `*/` Look in cartridge path
+  - `./` Look in current directory
+  - `../` Look in parent directory
+  - `dw/` Look in scripts API
+  - `server` get server object
+- Server Module
+  - Every controller must end with `next();`
+    - Controllers are middleware, next calls next function in chain
+    - Can also pass along errors with `next(new Error())`
+- Types of routes
+  - `server.use` responds to both `GET` and `POST` requests
+    - Not found in base cart
+- Add Middleware Functions
+  - `req`
+    - Used when looking for input information
+  - `res`
+    - Used for outputting information
+  - `next`
+    - Calls next function in chain
+- 4-1
+  - Pipeline not found error
+    - Indicates that controller was not found, so SFRA looked for pipeline (which was also not found)
+- Passing parameters
+  - res.render() has two arguments
+    - Template
+    - Parameters to pass into pdict
+  - `${}` Indicates an expression, with the contents of the braces being evaluated
+- Troubleshooting
+  - Ensure cartridge directories are within the `cartridges` directory 
+    - This is where prophet will expect to find them
+  - Ensure local code version matches live code version
+  - Cartridge path names are case sensitive
+  - Check cache settings, ensure it's disabled
+  - Check indexes
+  - Make sure that all files are saved and uploaded
+- 4-3
+  - Request Log
+    - Under `toolkit` in BM
+    - `Clear` does not clear entire request log, only what is currently displayed on the page
+- 4-4
+- superModule
+  - Allows for extending of javascript modules
+  - References the same module in a different cartridge
+    - Cartridge is the next cart to the right on the cart path
+  - This is how multiple controllers can run code on the same request (middleware)
+  - superModule options
+    - append
+      - Inserts functionality after original functionality
+    - prepend
+      - Inserts functionality before original functionality
+    - replace
+      - Completely replaces original middleware
+- 4-6
+  - If using `res.getViewData()`, `res.setViewData()` is not required
+    - viewData is passed by referenced
+  - `setViewData()` appends viewData, it does not replace the object
+- 4-7
+- B2C Commerce Script API
+  - Sandboxes updated at least two weeks before PIG instances
+  - Updated documentation included with update
+  - Version number included in BM
+  - Can set site for earlier version compatibility if not using current features
+- B2C Commerce API Packages
+  - Two types
+    - Storefront
+      - Has to do with campaigns, catalogs, orders
+    - Background
+      - Behind the scenes
+- Product Factories
+  - Access API through models instead of directly
+### Day 2 - Tuesday
+- 4-8
+- Knowledge Check
+  - Controllers must conform to B2C Commerce module
+standard
+    - False, commerce module standard does not exist
+    - Exam won't have intentionally trick questions like this
+  - Middleware chaining allows you to extend routes
+without having to rewrite them
+    - True
+- Model
+  - Converts API objects to serializable JSON
+  - Applies business logic during conversion, so data is in a usable format
+    - e.g. Price may be affected by current promotions
+- 5-1
+  - All decorators can be imported at once by importing `decorators/index.js`
+  - `module.superModule` and `base.call` allow for extending models without editing the base cart
+- 5-2
+  - Revisit later
+- Extend a model with a new decorator
+  - Revisit later
+- Knowledge Check
+  - How can you extend a model when no decorator
+pattern is used?
+    - Use `superModule` and `.call()`
+  - Can you give another example for when you may want
+to extend or create a new model?
+    - Size guides for clothing products
+- ISML
+  - Internet Store Markup Language
+  - Generates HTML
+  - .isml
+- 6-1
+  - Prophet's tag completion ignores starting brace
+    - `issl` > `<isslot>`
+    - `<issl` > `<<isslot>
+  - Comments
+    - HTML comments `<!-- -->` are sent to browser
+    - ISML comments `<iscomment>` are never sent to browser
+    - To comment out a script, use isml comments. HTML comments will not stop isscript from running
+  - `<isscript` is not linted
+  - Best Practice: Only use isscript to load client side css and js
+    - Scripting should be done in controller, with output passed to template
+  - `<isprint>`
+    - Prints output, formated based on localization settings
+- Template Decorator
+  - Used to add headers and footers to page, similar to Shopify layout
+  - `<isreplace/>` Replaced by page content
+- Types of Template Decorators
+  - Page
+    - Includes navigation
+  - Checkout
+    - Does not include navigation
+    - OOB, only used in checkout
+- Best Practices for Other ISML Tags in SFRA
+  - Control logic should take place in the controller, instead of isml templates
+    - Exception: setting cache for content slots
+      - Content slot controller is located SFCC server side, no access
+- ISML Expressions
+  - `${}`
+- The Top Level Package
+  - Implicitly included, never needs to be imported
+  - Implicitly used, not mentioned in expressions
+- The dw.web Package
+  - Also implicitly included
+- Creating and accessing variables
+  - `<isset>`
+    - Don't do business logic here
+    - Attributes
+      - name
+      - value
+      - scope
+        - Recommended to use page, defaults to session
+  - Retrieval syntax by scope
+    - Included templates can retrieve variables if within scope
+  - Variable Attributes
+  - Conditional Statements and Loops
+  - Loops
+    - `<isloop>`
+      - Loops through itemsin collection or array
+      - Can break and continue  loops
+  - Status Variable Properties
+  - 6-4
+  - Remote Includes
+    - Never hard code URLs, use URLUtils to build url instead
+      - URLs change depending on the server, each sandbox, staging, dev, and prod will have its own URLs
+    - Remote include content can have different cache settings than the page it appears on
+      - e.g. Search results/product tile order can't be cached, but the product tiles themselves can be
+    - URLUtils.url will automatically try to route to `Start` if route is not included
+      - `URLUtils.url('Basket')` == `URLUtils.url('Basket-Start')`
+- Resource API and Resource Bundles
+  - Used in place of hardcoded strings
+  - Allows for i18n
+  - `.properties` extension
+  - Named by functional area
+  - Located in `cartridges/${cart_name}/cartridge/templates/resources`
+  - Fallback
+    - ISO country codes are all caps
+    - ISO lang codes are all lowercase
+    - First, server looks in account_fr_FR.properties for key value pair (if present)
+    - If not found, next account_fr.properties is checked (if present)
+    - If not found, next account.properties is checked  (if present)
+    - If not found, then it gives up
+  - Add variables to translation
+    - Values passed in, referenced by index
+    - Key Value pair: `label.number.items.in.cart={0} Items`
+    - Reference in model: `Resource.msgf('label.number.items.in.cart', 'cart', null, this.numItems)`
+    - Result: `10 items`
+- Using a Resource Bundle
+  - `Resource.msg`
+    - Used when there are no variables
+    - `Resource.msg('key.in.resource.file', 'resource_file', 'default text')`
+  - `Resource.msgf`
+    - Used when there are variables
+    - `Resource.msgf('key.in.resource.file', 'resource_file', 'default text', Parameter1)`
+  - Use default text?
+    - If used, prevents nonsense text from appearing on site
+    - If not used, output text may erroneously pass QA because it appears correct
+- 6-6
+  - Locales must be enabled on a per-store basis
+  - Locales can be added in BM if not already present
+  - Empty fields in Regional Settings will default to Java defaults
+- Content Slots
+  - Types
+    - Product (shows products, merchant selected)
+    - Category
+    - Asset
+    - HTML
+    - Recommendations (shows products, einstein selected)
+- Content Slot Contexts
+  - Defines where a specific content slot can be located
+- Slots vs Assets
+  - Slot
+    - Place where content can go, made with code
+    - Does not care what is actually placed there
+    - Defined with code
+  - Asset
+    - Non-configurable
+    - Requires no coding
+  - Creating and Configuring Content Slots
+    - Developer creates slot in ISML
+      - `<isslot id description context>`
+    - Developer creates slot rendering template
+      - Not template for page
+      - Defines how content slot is displayed
+      - Within `templates/default/slots` directory
+    - Merchant configures slot
+      - Configured in BM
+      - Slot template determined by content type selected in BM
+- Developer Creates a Content Slot
+  - Description field must be present, even if empty
+    - Global slot
+      - `context="global"`
+    - Category Slot
+      - `context="category"`
+      - `context-object="${pdict.category}"`
+        - Pass current category into content slot
+- Developer Creates a Slot Rendering Template
+  - `slotcontent` belongs to `Toplevel.global`
+- 6-7 Create a Content Slot
+- Merchant Creates a Content Slot Configuration
+  - Einstein recommendations can be set on staging/dev/prod, not sandbox
+- Using Content Link Functions
+  - Functions
+    - $staticlink$
+    - $url$
+    - $httpUrl$
+    - $httpsUrl$
+    - $include$
+  - Behind the scenes, each function utilizes URLUtils
+    - Format makes script html safe
+  - Example
+    - `href="$url('Page-Show', 'cid', '2-day-shipping-popup')$"`
+- 6-8
+  - When uploading an image for a content slot, select it by clicking on the image title instead of clicking select
+- Page Designer
+  - Elements
+    - Pages
+      - Outermost container
+    - Regions
+      - Component that can contain other components
+      - Allows for a hierarchical structure
+    - Components
+      - Specify actual content
+  - Pages and components can be customer group/date range specific
+- 6-9
+- Developer Tasks: WHat can developers create
+  - Page
+    - "Templates" not ISML templates
+      - Promo page template, home page template, etc.
+    - Can contain set regions with specified components for each region
+  - Component Types
+    - Type of content available for use in a specific region
+    - Specify what goes in them, and which attributes are required
+- Page and Component Storage
+  - Page and Component
+    - Are within dw.experience package
+    - Contains regions which can contain components
+    - Stored in Merchant Tools > Content Assets
+      - Not visible in BM
+      - Can be exported as part of content library
+- Page Visibility
+  - `isVisible()` returns true is page is visible
+    - Published?
+    - Set to visible in current locale?
+    - All visibility rules apply?
+      - Schedule matches
+      - Customer Group Matches
+  - Pages with visibility rules should not be cached
+    - Caching is for pages visible for everyone
+  - Render page needs a second argument, even if it's empty
+- Cartridge Files and Folder Structure
+### Day 3 - Wednesday
+- 6-11
+  - js and json go in `experience/components/commerce assets`
+  - template goes in `templates/experience/components/commerce_assets`
+- 6-12
+  - `Page-Show?cid=salepage` can be used to access a page designer page without a custom controller
+    - Ensure no additional functionality is needed beyond what is in the Page-Show controller
+- Knowledge Check
+  - When should you use the <isscript> tag?
+    - Only if you have custom static JS or static css
+  - What contexts of content slots can you create?
+    - global
+    - category
+  - Can a slot be created in Business Manager?
+    - No, must be created in code
+  - How are types defined in Page Designer?
+    - In asset json and js files, along with isml template
+- System and Custom Objects
+  - Extensibility can be viewed under 
+  - Attributes with padlock are system defined
+  - Those without are custom, and are defined for a specific site
+  - Object types can be thought of as DB tables
+    - Attributes can be thought of as a table column
+    - Each instance of an object can be thought of as a table row
+  - Attribute boost factor affects text relevance
+    - Ignored when not sorting by text relevance
+  - About Custom Objects
+  - Considerations for using Custom Objects
+    - Can be site or organization specific
+    - Best for small amounts of static data
+    - Ideally, custom objects should have fewer than 100 rows
+      - Querying slows after 100 rows
+      - Actual quota is 40,000 rows
+  - Defining a Custom Object Type
+    - Key attribute can be thought of as primary key
+    - Data replication option determines if data can be included in replication
+      - Object definition will be replicated regardless of setting
+      - Use replicable if config needs to be input in staging and transferred to prod
+      - Use not replicable if used to collect data
+        - e.g. Tracking whether customer is subscribed to newsletter
+      - Retention can only be set if data is not replicable
+        - Based on last modified timestamp
+        - Think of this setting as an expiration date
+        - If retention date is exceeded, nightly system job will remove data from custom object table
+      - Minimum of four attributes
+        - UUID
+        - Creation Date
+        - id
+        - Last Modified
+      - Don't use mandatory fields if creating objects programmatically
+        - Initial creation will fail, since only id is inserted
+- Inheritance tree
+  - dw.object.SystemObject is not an actual class
+    - Just a representation of a system object
+- Creating Custom Objects Programmatically
+  - Name of key column does not need to be specified, only value
+    - Column will be automatically detected
+  - `UUIDUtils.createUUID()` returns a string
+- Form Components
+  - Form Definition
+  - Controller for rendering form and handling form input
+    - Two routes
+  - Script to create custom object
+  - ISML template
+- Database Transaction Handling
+  - Implicit
+    - Automatically starts transaction
+    - Commits or rolls back based on B2C commerce
+  - Explicit
+    - Transaction controlled in script
+    - Commit/Roll back handled by script
+- Implicit
+  - `Transaction.wrap()`
+    - will commit if completed without a runtime error
+    - will roll back if there is a runtime error
+- Explicit
+  - `Transaction.begin()`
+    - `Transaction.commit()` will commit transaction
+    - `Transaction.rollback()` will rollback transaction
+    - May be in a try/catch or if/else to determine when to commit or roll back
+- Object Interaction
+  - Form framework is built for data that needs to be persisted
+  - For data that does not need to be persister, framework is overkill
+    - Non-persisting data only requires an html form
+- XMl Metadata File
+  - Forms can be included in other forms, similar to `<isinclude>`
+  - localized strings in `forms.xml` will be searched for in `forms.properties`
+    - Resource file name does not need to be specified
+  - Try not to hardcode required attribute
+- 7-2 > 7-7
+  - Redo this exercise to make sure it's understood
+- Enable Custom Logging
+  - Severity Level
+    - Fatal
+    - Error
+    - Warn
+    - Info
+    - Debug
+  - Messages are visible for currently selected severity and above
+    - Error will display Error and Fatal, etc.
+    - If a parent is set to a lopwer value, the child will inherit that setting
+      - e.g. if `product` is set to info and `product.bundles` is set to debug, `product.bundles` will be set to info
+    - Custom error logs come from carts
+    - Error logs come from system
+- Writing a Custom Log
+  - `dw.system.Logger.getLogger`
+    - Only way to create a log category
+    - Possible to not use getLogger, but can't create category
+  - Maximum number of log files per day
+    - Exceeding limit will throw a runtime error
+- Custom Logging COnsiderations
+  - In production
+    - Logs are captured daily
+    - After 5 days, logs are moved to archive
+    - After 30 days, loga are deleted
+  - Sandbox logs are not archived
+    - Deleted after 5 days
+  - File size limit of 10mb per log file
+    - Once hit, no more messages are stored
+    - Deleting files does not affect this
+    - B2C remembers how big the old file was, and will not surpass 10mb total
+  - One day is midnight to midnight
+- 7-7
+- Using System Objects
+  - Use `Externally Managed` attribute property for attributes that are from an external database
+    - Only affects merchant tools
+- 7-8
+- Client Side Javascript
+  - Directory
+    - `cartridge/client/default/js`
+  - `plugin-newsletter` is an example of client side validation
+- Knowledge check
+  - The Form Definition describes the data you need from
+the form and the system objects you want to use.
+    - False
+      - The form definition just specifies the form structure
+  - Extending an existing system object by adding new
+attributes is preferable to creating a new custom
+object.
+    - True
+      - Only use a custom object if it's the only option
+### Day 4 - Thursday
+- Hooks, Jobs, and Ocapi
+  - Higher level topics
+  - Recent (part of class for less than 4 months)
+- Hook
+  - Think of it as an event listener
+  - OCAPI
+    - Built in hook points, called every time a particular API is called
+      - e.g. Every time a shopping cart is posted
+      - pre/post hooks
+      - Hook script order not guaranteed
+- Hook definition
+  - need to be defined in `hooks.json`
+    - Specifies hook name and script
+    - Convention to name it `app.` for app hooks, and `integration.` for integration hooks
+  - `package.json` indicates where to find `hooks.json`
+- 8-1
+  - Emails can use ISML templates
+- OCAPI
+  - Shop API
+    - Used for Shop data
+    - Customer specific data
+  - Data API
+    - Can be used for continuous integration
+  - Meta API
+- OCAPI URL SYntax
+  - Different URLs on production and non-production (staging, dev, and sandbox)
+    - `()` Is in the wrong location on the SG slide
+- Client ID
+  - Every request needs a client ID
+  - Every sandbox has a test client ID of 30 a's in a row
+- OCAPI Settings
+  - Each site can have different actions exposed
+  - `BM > Admin > SiteDev > OCAPI Settings`
+  - Can be defined per site or globally
+    - Typically Data API global, since DB is global
+    - Typically Shop API is store based
+- Jobs
+  - Used to automate tasks
+  - Can be both custom or use OOB functionality
+  - Sandboxe jobs can only run manually
+- Job Flows
+  - Sequential jobs run top to bottom
+  - Parallel jobs run at the same time
+- Job Flow Scope
+  - Organization
+  - Specific sites
+  - Site parameter
+    - Site passed as parameter in OCAPI
+- Job Steps
+- Job Parameters
+  - Multiple jobs can share a parameter
+  - Can be updated for all jobs at once
+- Managing Jobs
+  - Job History
+  - Job Statistics
+  - Jobs (Deprecated)
+    - Allows for managing/running out of date jobs on older systems
+  - Job History lists jobs by individual run
+  - Job Statistics aggregates jobs by job type
+- 8-6
+- Knowledge Check
+  - Where is the location of the hooks.json mentioned?
+    - `package.json`
+  - What is the difference between a hook and controller?
+    - Controllers are triggered by URL, hooks are triggered like an event
+      - OCAPI hooks can run in response to server events
+    - Controller routes in multiple carts get overwritten, hooks in multiple carts all get called
+    - Controllers can call hooks
+  - Which OCAPI HTTP method creates or replaces a
+resource?
+    - `put`
+  - Where do you go to monitor the duration and number
+of executions for jobs?
+    - `BM > Admin > Operations > Job Statistics`
+- Site and Page Caching
+  - `res.cachePeriod`
+  - `res.cachePeriodUnit`
+  - `res.personalized`
+    - Indicates that this page has multiple versions/personalized content
+      - Not personal (account specific), but may include displaying promos to limited groups
+    - Adds overhead, only use when actually needed
+- Recommendations
+  - Disable on sandboxes, development, and staging
+  - Shorten cache on rapidly changing pages
+- 9-1
+  - Routes are cached, not templates
+  - Cache is set by URL
+- Site Performance: Pipeline Profiler
+- Site performance: Code Profiler
+- SFRA Tooling
+- 9-5
+- Knowledge Check
+  - What is the default cache setting?
+    - 24 hours
+  - Where do you change the value for cache?
+    - In the controller
+  - Are SFRA Tools available when you access the code
+  from Business Manager?
+    - No, it's only available  from Github
+- Bonus: Certification Exam
+  - Tom helped write it!
+  - Retakes
+    - CAn retake an unlimited number of times
+      - 1st take
+      - 1st retake has no time limit
+      - 2nd retake is minimum 4 weeks later
+  - About the Salesforce B2C Commerce Developer Credential
+    - These were the things determined to be essential to the developer job
+      - 1 week
+    - Then questions were made from the tasks
+      - Another 1 week
+    - All questions are based on this job task analysis
+      - This is the basis for all Salesforce exams
+    - These are for the minimally qualified candidates
+      - Designed for someone who's been doing this a few months
+      - Goal: to separate between a qualified Cand and an unqualified Cand
+  - Audience Description: Salesforce B2C Commerce Developer
+    - Describes the kinds of things a minimally qualified candidate should be able to do
+    - Doesn't talk about questions, but this is the job that they are trying to test for
+    - No explicit github questions, but it's expected that a full time dev can use it
+  - Ignore the typical job titles
+    - Irrelevant
+  - About the Exam
+    - 60 multiple choice (radio button),  multi select (checkbox), or matching questions
+      - No matching questions, as of yet (Tom is pretty sure)
+      - No short answer questions
+      - No writing code
+      - Just recognize the correct answer
+      - For multi select
+        - Will be told exactly how many answers to select
+        - Number of selections is double checked by the exam
+      - 5 questions that don't count towards the score
+        - Will see 65 questions
+        - They're there for statistical analysis, before they're added to the actual exam (beta test)
+        - Included inthe 105 minutes, would be 90 minutes without extras
+    - No reference material is allowed, at all
+    - Run the Kryterion system readiness check before taking the exam, and download the required software
+- Trails
+  - Take a look at the merchant material in trailhead
+- Exam Outline
+  - Each of the % sections relates to the job description from above
+  - Commerce Setup
+    - Given a sandbox env, configure an IDE...
+      - Will not be given a sandbox in the exam
+      - Hypothetical
+      - Sample question might be about dw.json or version directories
+      - Will not be IDE specific
+    - Given a sandbox instance and data...
+      - Assuming you have a sandbox and some import files, can you import it manually in BM using the import/export modules?
+    - Given the code for a storefront...
+      - Can you get the cart path right?
+      - There will certainly be a question about this
+      - e.g. This controller exists, with these three carts, and the override is in this one. What is the path?
+    - Given a sandbox environment, use the...
+    - Work with a B2C site
+      - Given a BM task...
+        - Not covered in class, go over in merchant trails!
+        - Look at Tom's trailhead live video, part 1
+          - Audio cuts out a little bit
+      - Given a config task...
+        - Use BM to enable storefront orders to be completed
+        - Not covered in class, go over in merchant trails!
+        - Look at Tom's trailhead live video, part 2 (coming in April)
+    - Data Management
+      - Maybe 15 questions
+      - Modify search preferences
+        - This is talking about searchable attributes
+      - Create and configure search refinements
+        - This is done in the site catalog
+        - At the very least play around with this, look at existing categories
+      - Given a debugging requirement...
+        - Very important
+        - First thing in custom logging exercise
+      - New attributes on an existing system type
+        - System objects exercise
+      - Given a business need to store custom...
+        - Newsletter exercise
+        - Don't be surprised if you see questions with the option of creating a cusstom object, and it's the wrong answer
+          - Custom attribute on system object
+      - Given a problem or performance issue...
+        - This is the code/pipeline profilers
+        - Cache configurations
+      - Given a specification and a...
+        - Configure OCAPI
+        - Look at exercise
+        - Will not have to memorize all resources available, but should recognize
+      - Given a service configuration
+        - Not covered in class
+        - Recognize how service configs apply to development
+          - More senior responsibility to configure
+        - Services timeout, circuit breaker
+    - Application Development
+      - ISML
+      - Debugging
+      - Best Practices
+      - Techniques
+      - Extend controllers using models, factories, etc.
+      - Page designer tools
+        - Can you design a new page?
+        - Do you know how to use PD, and write code for PD
+      - Forms framework
+        - CSRF protection!
+      - Localization requirements
+        - Do you know how to use externalized strings in forms and templates?
+        - Do you know what your properties file needs to look like and where it needs to go?
+      - logging
+        - Do you know the syntax for logging
+      - Use a service instance
+        - Not covered in class
+      - Hooks
+        - At least one question on hooks
+      - Given violated best practices...
+        - e.g. The following code snippet is performing poorly, the most likely cause is A, B, C, or D?
+        - Shown bad code or issue, may be asked what is the likely cause
+      - Can you do OCAPI?
+      - Can you do a job?
+  - Maintenance
+      - Complete maintenance exam, or cert expires
+      - Free
+      - Impossible to fail
+        - All maintenance exams are on trailhead
+        - Can change answers for incorrect questions
+        - Can retake until all answers are correct
+      - Just don't forget
+        - There will be automated emails
