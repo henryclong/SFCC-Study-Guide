@@ -1,0 +1,128 @@
+# B2C Developer Certification Exam
+
+- Certification Exam
+  - Tom helped write it!
+  - Retakes
+    - CAn retake an unlimited number of times
+      - 1st take
+      - 1st retake has no time limit
+      - 2nd retake is minimum 4 weeks later
+  - About the Salesforce B2C Commerce Developer Credential
+    - These were the things determined to be essential to the developer job
+      - 1 week
+    - Then questions were made from the tasks
+      - Another 1 week
+    - All questions are based on this job task analysis
+      - This is the basis for all Salesforce exams
+    - These are for the minimally qualified candidates
+      - Designed for someone who's been doing this a few months
+      - Goal: to separate between a qualified Cand and an unqualified Cand
+  - Audience Description: Salesforce B2C Commerce Developer
+    - Describes the kinds of things a minimally qualified candidate should be able to do
+    - Doesn't talk about questions, but this is the job that they are trying to test for
+    - No explicit github questions, but it's expected that a full time dev can use it
+  - Ignore the typical job titles
+    - Irrelevant
+  - About the Exam
+    - 60 multiple choice (radio button),  multi select (checkbox), or matching questions
+      - No matching questions, as of yet (Tom is pretty sure)
+      - No short answer questions
+      - No writing code
+      - Just recognize the correct answer
+      - For multi select
+        - Will be told exactly how many answers to select
+        - Number of selections is double checked by the exam
+      - 5 questions that don't count towards the score
+        - Will see 65 questions
+        - They're there for statistical analysis, before they're added to the actual exam (beta test)
+        - Included inthe 105 minutes, would be 90 minutes without extras
+    - No reference material is allowed, at all
+    - Run the Kryterion system readiness check before taking the exam, and download the required software
+- Trails
+  - Take a look at the merchant material in trailhead
+- Exam Outline
+  - Each of the % sections relates to the job description from above
+  - Commerce Setup
+    - Given a sandbox env, configure an IDE...
+      - Will not be given a sandbox in the exam
+      - Hypothetical scenario
+      - Sample question might be about dw.json or version directories
+      - Will not be IDE specific
+    - Given a sandbox instance and data...
+      - Assuming you have a sandbox and some import files, can you import it manually in BM using the import/export modules?
+    - Given the code for a storefront...
+      - Can you get the cart path right?
+      - There will certainly be a question about this
+      - e.g. This controller exists, with these three carts, and the override is in this one. What is the path?
+    - Given a sandbox environment, use the...
+    - Work with a B2C site
+      - Given a BM task...
+        - Not covered in class, go over in merchant trails!
+        - Look at Tom's trailhead live video, part 1
+          - Audio cuts out a little bit
+      - Given a config task...
+        - Use BM to enable storefront orders to be completed
+        - Not covered in class, go over in merchant trails!
+        - Look at Tom's trailhead live video, part 2 (coming in April)
+    - Data Management
+      - Maybe 15 questions
+      - Modify search preferences
+        - This is talking about searchable attributes
+      - Create and configure search refinements
+        - This is done in the site catalog
+        - At the very least play around with this, look at existing categories
+      - Given a debugging requirement...
+        - Very important
+        - First thing in custom logging exercise
+      - New attributes on an existing system type
+        - System objects exercise
+      - Given a business need to store custom...
+        - Newsletter exercise
+        - Don't be surprised if you see questions with the option of creating a cusstom object, and it's the wrong answer
+          - Custom attribute on system object
+      - Given a problem or performance issue...
+        - This is the code/pipeline profilers
+        - Cache configurations
+      - Given a specification and a...
+        - Configure OCAPI
+        - Look at exercise
+        - Will not have to memorize all resources available, but should recognize
+      - Given a service configuration
+        - Not covered in class
+        - Recognize how service configs apply to development
+          - More senior responsibility to configure
+        - Services timeout, circuit breaker
+    - Application Development
+      - ISML
+      - Debugging
+      - Best Practices
+      - Techniques
+      - Extend controllers using models, factories, etc.
+      - Page designer tools
+        - Can you design a new page?
+        - Do you know how to use PD, and write code for PD
+      - Forms framework
+        - CSRF protection!
+      - Localization requirements
+        - Do you know how to use externalized strings in forms and templates?
+        - Do you know what your properties file needs to look like and where it needs to go?
+      - logging
+        - Do you know the syntax for logging
+      - Use a service instance
+        - Not covered in class
+      - Hooks
+        - At least one question on hooks
+      - Given violated best practices...
+        - e.g. The following code snippet is performing poorly, the most likely cause is A, B, C, or D?
+        - Shown bad code or issue, may be asked what is the likely cause
+      - Can you do OCAPI?
+      - Can you do a job?
+  - Maintenance
+      - Complete maintenance exam, or cert expires
+      - Free
+      - Impossible to fail
+        - All maintenance exams are on trailhead
+        - Can change answers for incorrect questions
+        - Can retake until all answers are correct
+      - Just don't forget
+        - There will be automated emails

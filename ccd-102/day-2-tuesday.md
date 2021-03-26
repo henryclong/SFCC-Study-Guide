@@ -1,0 +1,212 @@
+# Day 2 - Tuesday
+- 4-8
+- Knowledge Check
+  - Controllers must conform to B2C Commerce module
+standard
+    - False, commerce module standard does not exist
+    - Exam won't have intentionally trick questions like this
+  - Middleware chaining allows you to extend routes
+without having to rewrite them
+    - True
+- Model
+  - Converts API objects to serializable JSON
+  - Applies business logic during conversion, so data is in a usable format
+    - e.g. Price may be affected by current promotions
+- 5-1
+  - All decorators can be imported at once by importing `decorators/index.js`
+  - `module.superModule` and `base.call` allow for extending models without editing the base cart
+- 5-2
+  - Revisit later
+- Extend a model with a new decorator
+  - Revisit later
+- Knowledge Check
+  - How can you extend a model when no decorator
+pattern is used?
+    - Use `superModule` and `.call()`
+  - Can you give another example for when you may want
+to extend or create a new model?
+    - Size guides for clothing products
+- ISML
+  - Internet Store Markup Language
+  - Generates HTML
+  - .isml
+- 6-1
+  - Prophet's tag completion ignores starting brace
+    - `issl` > `<isslot>`
+    - `<issl` > `<<isslot>
+  - Comments
+    - HTML comments `<!-- -->` are sent to browser
+    - ISML comments `<iscomment>` are never sent to browser
+    - To comment out a script, use isml comments. HTML comments will not stop isscript from running
+  - `<isscript` is not linted
+  - Best Practice: Only use isscript to load client side css and js
+    - Scripting should be done in controller, with output passed to template
+  - `<isprint>`
+    - Prints output, formated based on localization settings
+- Template Decorator
+  - Used to add headers and footers to page, similar to Shopify layout
+  - `<isreplace/>` Replaced by page content
+- Types of Template Decorators
+  - Page
+    - Includes navigation
+  - Checkout
+    - Does not include navigation
+    - OOB, only used in checkout
+- Best Practices for Other ISML Tags in SFRA
+  - Control logic should take place in the controller, instead of isml templates
+    - Exception: setting cache for content slots
+      - Content slot controller is located SFCC server side, no access
+- ISML Expressions
+  - `${}`
+- The Top Level Package
+  - Implicitly included, never needs to be imported
+  - Implicitly used, not mentioned in expressions
+- The dw.web Package
+  - Also implicitly included
+- Creating and accessing variables
+  - `<isset>`
+    - Don't do business logic here
+    - Attributes
+      - name
+      - value
+      - scope
+        - Recommended to use page, defaults to session
+  - Retrieval syntax by scope
+    - Included templates can retrieve variables if within scope
+  - Variable Attributes
+  - Conditional Statements and Loops
+  - Loops
+    - `<isloop>`
+      - Loops through itemsin collection or array
+      - Can break and continue  loops
+  - Status Variable Properties
+  - 6-4
+  - Remote Includes
+    - Never hard code URLs, use URLUtils to build url instead
+      - URLs change depending on the server, each sandbox, staging, dev, and prod will have its own URLs
+    - Remote include content can have different cache settings than the page it appears on
+      - e.g. Search results/product tile order can't be cached, but the product tiles themselves can be
+    - URLUtils.url will automatically try to route to `Start` if route is not included
+      - `URLUtils.url('Basket')` == `URLUtils.url('Basket-Start')`
+- Resource API and Resource Bundles
+  - Used in place of hardcoded strings
+  - Allows for i18n
+  - `.properties` extension
+  - Named by functional area
+  - Located in `cartridges/${cart_name}/cartridge/templates/resources`
+  - Fallback
+    - ISO country codes are all caps
+    - ISO lang codes are all lowercase
+    - First, server looks in account_fr_FR.properties for key value pair (if present)
+    - If not found, next account_fr.properties is checked (if present)
+    - If not found, next account.properties is checked  (if present)
+    - If not found, then it gives up
+  - Add variables to translation
+    - Values passed in, referenced by index
+    - Key Value pair: `label.number.items.in.cart={0} Items`
+    - Reference in model: `Resource.msgf('label.number.items.in.cart', 'cart', null, this.numItems)`
+    - Result: `10 items`
+- Using a Resource Bundle
+  - `Resource.msg`
+    - Used when there are no variables
+    - `Resource.msg('key.in.resource.file', 'resource_file', 'default text')`
+  - `Resource.msgf`
+    - Used when there are variables
+    - `Resource.msgf('key.in.resource.file', 'resource_file', 'default text', Parameter1)`
+  - Use default text?
+    - If used, prevents nonsense text from appearing on site
+    - If not used, output text may erroneously pass QA because it appears correct
+- 6-6
+  - Locales must be enabled on a per-store basis
+  - Locales can be added in BM if not already present
+  - Empty fields in Regional Settings will default to Java defaults
+- Content Slots
+  - Types
+    - Product (shows products, merchant selected)
+    - Category
+    - Asset
+    - HTML
+    - Recommendations (shows products, einstein selected)
+- Content Slot Contexts
+  - Defines where a specific content slot can be located
+- Slots vs Assets
+  - Slot
+    - Place where content can go, made with code
+    - Does not care what is actually placed there
+    - Defined with code
+  - Asset
+    - Non-configurable
+    - Requires no coding
+  - Creating and Configuring Content Slots
+    - Developer creates slot in ISML
+      - `<isslot id description context>`
+    - Developer creates slot rendering template
+      - Not template for page
+      - Defines how content slot is displayed
+      - Within `templates/default/slots` directory
+    - Merchant configures slot
+      - Configured in BM
+      - Slot template determined by content type selected in BM
+- Developer Creates a Content Slot
+  - Description field must be present, even if empty
+    - Global slot
+      - `context="global"`
+    - Category Slot
+      - `context="category"`
+      - `context-object="${pdict.category}"`
+        - Pass current category into content slot
+- Developer Creates a Slot Rendering Template
+  - `slotcontent` belongs to `Toplevel.global`
+- 6-7 Create a Content Slot
+- Merchant Creates a Content Slot Configuration
+  - Einstein recommendations can be set on staging/dev/prod, not sandbox
+- Using Content Link Functions
+  - Functions
+    - $staticlink$
+    - $url$
+    - $httpUrl$
+    - $httpsUrl$
+    - $include$
+  - Behind the scenes, each function utilizes URLUtils
+    - Format makes script html safe
+  - Example
+    - `href="$url('Page-Show', 'cid', '2-day-shipping-popup')$"`
+- 6-8
+  - When uploading an image for a content slot, select it by clicking on the image title instead of clicking select
+- Page Designer
+  - Elements
+    - Pages
+      - Outermost container
+    - Regions
+      - Component that can contain other components
+      - Allows for a hierarchical structure
+    - Components
+      - Specify actual content
+  - Pages and components can be customer group/date range specific
+- 6-9
+- Developer Tasks: WHat can developers create
+  - Page
+    - "Templates" not ISML templates
+      - Promo page template, home page template, etc.
+    - Can contain set regions with specified components for each region
+  - Component Types
+    - Type of content available for use in a specific region
+    - Specify what goes in them, and which attributes are required
+- Page and Component Storage
+  - Page and Component
+    - Are within dw.experience package
+    - Contains regions which can contain components
+    - Stored in Merchant Tools > Content Assets
+      - Not visible in BM
+      - Can be exported as part of content library
+- Page Visibility
+  - `isVisible()` returns true is page is visible
+    - Published?
+    - Set to visible in current locale?
+    - All visibility rules apply?
+      - Schedule matches
+      - Customer Group Matches
+  - Pages with visibility rules should not be cached
+    - Caching is for pages visible for everyone
+  - Render page needs a second argument, even if it's empty
+- Cartridge Files and Folder Structure

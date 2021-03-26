@@ -1,0 +1,100 @@
+# Day 4 - Thursday
+- Hooks, Jobs, and Ocapi
+  - Higher level topics
+  - Recent (part of class for less than 4 months)
+- Hook
+  - Think of it as an event listener
+  - OCAPI
+    - Built in hook points, called every time a particular API is called
+      - e.g. Every time a shopping cart is posted
+      - pre/post hooks
+      - Hook script order not guaranteed
+- Hook definition
+  - need to be defined in `hooks.json`
+    - Specifies hook name and script
+    - Convention to name it `app.` for app hooks, and `integration.` for integration hooks
+  - `package.json` indicates where to find `hooks.json`
+- 8-1
+  - Emails can use ISML templates
+- OCAPI
+  - Shop API
+    - Used for Shop data
+    - Customer specific data
+  - Data API
+    - Can be used for continuous integration
+  - Meta API
+- OCAPI URL SYntax
+  - Different URLs on production and non-production (staging, dev, and sandbox)
+    - `()` Is in the wrong location on the SG slide
+- Client ID
+  - Every request needs a client ID
+  - Every sandbox has a test client ID of 30 a's in a row
+- OCAPI Settings
+  - Each site can have different actions exposed
+  - `BM > Admin > SiteDev > OCAPI Settings`
+  - Can be defined per site or globally
+    - Typically Data API global, since DB is global
+    - Typically Shop API is store based
+- Jobs
+  - Used to automate tasks
+  - Can be both custom or use OOB functionality
+  - Sandboxe jobs can only run manually
+- Job Flows
+  - Sequential jobs run top to bottom
+  - Parallel jobs run at the same time
+- Job Flow Scope
+  - Organization
+  - Specific sites
+  - Site parameter
+    - Site passed as parameter in OCAPI
+- Job Steps
+- Job Parameters
+  - Multiple jobs can share a parameter
+  - Can be updated for all jobs at once
+- Managing Jobs
+  - Job History
+  - Job Statistics
+  - Jobs (Deprecated)
+    - Allows for managing/running out of date jobs on older systems
+  - Job History lists jobs by individual run
+  - Job Statistics aggregates jobs by job type
+- 8-6
+- Knowledge Check
+  - Where is the location of the hooks.json mentioned?
+    - `package.json`
+  - What is the difference between a hook and controller?
+    - Controllers are triggered by URL, hooks are triggered like an event
+      - OCAPI hooks can run in response to server events
+    - Controller routes in multiple carts get overwritten, hooks in multiple carts all get called
+    - Controllers can call hooks
+  - Which OCAPI HTTP method creates or replaces a
+resource?
+    - `put`
+  - Where do you go to monitor the duration and number
+of executions for jobs?
+    - `BM > Admin > Operations > Job Statistics`
+- Site and Page Caching
+  - `res.cachePeriod`
+  - `res.cachePeriodUnit`
+  - `res.personalized`
+    - Indicates that this page has multiple versions/personalized content
+      - Not personal (account specific), but may include displaying promos to limited groups
+    - Adds overhead, only use when actually needed
+- Recommendations
+  - Disable on sandboxes, development, and staging
+  - Shorten cache on rapidly changing pages
+- 9-1
+  - Routes are cached, not templates
+  - Cache is set by URL
+- Site Performance: Pipeline Profiler
+- Site performance: Code Profiler
+- SFRA Tooling
+- 9-5
+- Knowledge Check
+  - What is the default cache setting?
+    - 24 hours
+  - Where do you change the value for cache?
+    - In the controller
+  - Are SFRA Tools available when you access the code
+  from Business Manager?
+    - No, it's only available  from Github

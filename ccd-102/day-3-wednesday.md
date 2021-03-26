@@ -1,0 +1,141 @@
+# Day 3 - Wednesday
+- 6-11
+  - js and json go in `experience/components/commerce assets`
+  - template goes in `templates/experience/components/commerce_assets`
+- 6-12
+  - `Page-Show?cid=salepage` can be used to access a page designer page without a custom controller
+    - Ensure no additional functionality is needed beyond what is in the Page-Show controller
+- Knowledge Check
+  - When should you use the <isscript> tag?
+    - Only if you have custom static JS or static css
+  - What contexts of content slots can you create?
+    - global
+    - category
+  - Can a slot be created in Business Manager?
+    - No, must be created in code
+  - How are types defined in Page Designer?
+    - In asset json and js files, along with isml template
+- System and Custom Objects
+  - Extensibility can be viewed under 
+  - Attributes with padlock are system defined
+  - Those without are custom, and are defined for a specific site
+  - Object types can be thought of as DB tables
+    - Attributes can be thought of as a table column
+    - Each instance of an object can be thought of as a table row
+  - Attribute boost factor affects text relevance
+    - Ignored when not sorting by text relevance
+  - About Custom Objects
+  - Considerations for using Custom Objects
+    - Can be site or organization specific
+    - Best for small amounts of static data
+    - Ideally, custom objects should have fewer than 100 rows
+      - Querying slows after 100 rows
+      - Actual quota is 40,000 rows
+  - Defining a Custom Object Type
+    - Key attribute can be thought of as primary key
+    - Data replication option determines if data can be included in replication
+      - Object definition will be replicated regardless of setting
+      - Use replicable if config needs to be input in staging and transferred to prod
+      - Use not replicable if used to collect data
+        - e.g. Tracking whether customer is subscribed to newsletter
+      - Retention can only be set if data is not replicable
+        - Based on last modified timestamp
+        - Think of this setting as an expiration date
+        - If retention date is exceeded, nightly system job will remove data from custom object table
+      - Minimum of four attributes
+        - UUID
+        - Creation Date
+        - id
+        - Last Modified
+      - Don't use mandatory fields if creating objects programmatically
+        - Initial creation will fail, since only id is inserted
+- Inheritance tree
+  - dw.object.SystemObject is not an actual class
+    - Just a representation of a system object
+- Creating Custom Objects Programmatically
+  - Name of key column does not need to be specified, only value
+    - Column will be automatically detected
+  - `UUIDUtils.createUUID()` returns a string
+- Form Components
+  - Form Definition
+  - Controller for rendering form and handling form input
+    - Two routes
+  - Script to create custom object
+  - ISML template
+- Database Transaction Handling
+  - Implicit
+    - Automatically starts transaction
+    - Commits or rolls back based on B2C commerce
+  - Explicit
+    - Transaction controlled in script
+    - Commit/Roll back handled by script
+- Implicit
+  - `Transaction.wrap()`
+    - will commit if completed without a runtime error
+    - will roll back if there is a runtime error
+- Explicit
+  - `Transaction.begin()`
+    - `Transaction.commit()` will commit transaction
+    - `Transaction.rollback()` will rollback transaction
+    - May be in a try/catch or if/else to determine when to commit or roll back
+- Object Interaction
+  - Form framework is built for data that needs to be persisted
+  - For data that does not need to be persister, framework is overkill
+    - Non-persisting data only requires an html form
+- XMl Metadata File
+  - Forms can be included in other forms, similar to `<isinclude>`
+  - localized strings in `forms.xml` will be searched for in `forms.properties`
+    - Resource file name does not need to be specified
+  - Try not to hardcode required attribute
+- 7-2 > 7-7
+  - Redo this exercise to make sure it's understood
+- Enable Custom Logging
+  - Severity Level
+    - Fatal
+    - Error
+    - Warn
+    - Info
+    - Debug
+  - Messages are visible for currently selected severity and above
+    - Error will display Error and Fatal, etc.
+    - If a parent is set to a lopwer value, the child will inherit that setting
+      - e.g. if `product` is set to info and `product.bundles` is set to debug, `product.bundles` will be set to info
+    - Custom error logs come from carts
+    - Error logs come from system
+- Writing a Custom Log
+  - `dw.system.Logger.getLogger`
+    - Only way to create a log category
+    - Possible to not use getLogger, but can't create category
+  - Maximum number of log files per day
+    - Exceeding limit will throw a runtime error
+- Custom Logging COnsiderations
+  - In production
+    - Logs are captured daily
+    - After 5 days, logs are moved to archive
+    - After 30 days, loga are deleted
+  - Sandbox logs are not archived
+    - Deleted after 5 days
+  - File size limit of 10mb per log file
+    - Once hit, no more messages are stored
+    - Deleting files does not affect this
+    - B2C remembers how big the old file was, and will not surpass 10mb total
+  - One day is midnight to midnight
+- 7-7
+- Using System Objects
+  - Use `Externally Managed` attribute property for attributes that are from an external database
+    - Only affects merchant tools
+- 7-8
+- Client Side Javascript
+  - Directory
+    - `cartridge/client/default/js`
+  - `plugin-newsletter` is an example of client side validation
+- Knowledge check
+  - The Form Definition describes the data you need from
+the form and the system objects you want to use.
+    - False
+      - The form definition just specifies the form structure
+  - Extending an existing system object by adding new
+attributes is preferable to creating a new custom
+object.
+    - True
+      - Only use a custom object if it's the only option
