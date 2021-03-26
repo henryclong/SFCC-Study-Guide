@@ -7,13 +7,10 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 - [B2C Developer Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-B2C-Commerce-Developer-Exam-Guide)
 - [B2C Documentation](https://documentation.b2c.commercecloud.salesforce.com/)
 
-## SFCC B2C Exam Outline
-| Exam Contents | Percentage
-|-|-
-| [Commerce Setup](b2c-exam-outline/commerce-setup.md) | 11%
-| [Work With a B2C Site](b2c-exam-outline/work-with-a-b2c-site.md) | 12%
-| [Data Management Using Business Manager Usage](b2c-exam-outline/data-management-using-business-manager-usage.md) | 24%
-| [Application Development](b2c-exam-outline/application-development.md) | 53%
+## Trailhead
+| Trail
+| -
+| [Develop for Salesforce B2C Commerce](trailhead/b2c-developer.md)
 
 ## CCD-102
 | Class Notes
@@ -24,7 +21,13 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Thursday](b2c-exam-outline/application-development.md)
 | [Exam Notes](b2c-exam-outline/application-development.md)
 
-[Develop for Salesforce B2C Commerce](b2c-developer.md)
+## SFCC B2C Exam Outline
+| Exam Contents | Percentage
+|-|-
+| [Commerce Setup](b2c-exam-outline/commerce-setup.md) | 11%
+| [Work With a B2C Site](b2c-exam-outline/work-with-a-b2c-site.md) | 12%
+| [Data Management Using Business Manager Usage](b2c-exam-outline/data-management-using-business-manager-usage.md) | 24%
+| [Application Development](b2c-exam-outline/application-development.md) | 53%
 
 ## Study Guide To-do
 ![Progress](https://progress-bar.dev/16/?scale=28&suffix=&nbsp;of&nbsp;28&nbsp;Completed&width=200)
