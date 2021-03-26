@@ -10,10 +10,19 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 ## SFCC B2C Exam Outline
 | Exam Contents | Percentage
 |-|-
-| [Commerce Setup](commerce-setup.md) | 11%
-| [Work With a B2C Site](work-with-a-b2c-site.md) | 12%
-| [Data Management Using Business Manager Usage](data-management-using-business-manager-usage.md) | 24%
-| [Application Development](application-development.md) | 53%
+| [Commerce Setup](b2c-exam-outline/commerce-setup.md) | 11%
+| [Work With a B2C Site](b2c-exam-outline/work-with-a-b2c-site.md) | 12%
+| [Data Management Using Business Manager Usage](b2c-exam-outline/data-management-using-business-manager-usage.md) | 24%
+| [Application Development](b2c-exam-outline/application-development.md) | 53%
+
+## CCD-102
+| Class Notes
+|-
+| [Monday](ccd-102/day-1-monday.md)
+| [Tuesday](b2c-exam-outline/work-with-a-b2c-site.md)
+| [Wednesday](b2c-exam-outline/data-management-using-business-manager-usage.md)
+| [Thursday](b2c-exam-outline/application-development.md)
+| [Exam Notes](b2c-exam-outline/application-development.md)
 
 [Develop for Salesforce B2C Commerce](b2c-developer.md)
 
