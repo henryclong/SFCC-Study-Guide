@@ -1,0 +1,97 @@
+# Prepare for the B2C Developer Certification: What You Need To Know About Merchandising
+[This video](https://trailhead.salesforce.com/live/videos/a2r3k000001n2l4/prepare-for-the-b2c-developer-certification-what-you-need-to-know-about-merchandising/) covers the merchandising material that will be on the exam, but was not in the CCD-102 course
+
+- Catalog Overview
+    - Master Catalog
+        - Owns products/Stores product data
+    - Storefront Catalog
+        - Is assigned products from master catalog
+        - Defines storefront navigation and category structure
+- Demo
+    - Product attribute definitions show up on the master catalog
+    - Category attributes show up on the storefront catalog
+- Product Visibility
+    - Determines whether customers can view a product
+    - In order for a customer to see a product, it must be
+        - Online
+        - In a category that is
+            - Online
+            - In the storefront catalog
+- Product Searchability
+    - Determines whether product appears in search results
+    - In order to be searchable, it tmust be
+        - Everything from last slide
+        - Set to searchable
+        - Set to pne or both:
+            - Available to sell
+            - Searchable if unavailable
+- Inventory Settings & Managegemt
+    - OOB, only one inventory can be assigned to a single site
+    - `Merchant Tools > Products and Catalogs > Intentory`
+    - Multiple inventories within RefArch
+        - Requires custom coding, not covered in video
+- Product Status
+    - In Stock
+    - Unavailable
+    - Preorder & Backorder
+        - Out of stock, but can still be purchased
+- Inventory Calculation
+    - Is Line item marked perpetual?
+        - If marked perpetual, no calculation
+        - Else calculation
+    - Calculation
+        - No Pre/Backorder
+            - Allocation - Orders Placed = Stock on hand
+        - With Pre/Backorder
+            - Allocation + Preorder/Backorder allocation - Orders placed = Available to sell
+- Inventory for Different Product Types
+    - Variation products
+        - Variations
+            - Variations have inventory data, masters do not
+        - Product Sets
+            - Each product within it has inventory data, set as a whole does not
+        - Product Bundles
+            - Both bundles and individual products can have their own inventory data
+            - If the bundle has it's own inventory data, it can only purchased until it's  inventory level reaches zero
+                - Even if individual products are still available
+            - If the bundle does not have it's own inventory data, it's inventory level will behave like a product set
+                - Will be available iff each of the products in it are available
+- Using Price Books to Manage Prices
+    - Collection of prices for a group of products
+        - Not necessarily all products
+    - Each price book is for one currency
+    - Multiple can be active at a time
+        - e.g. One for list prices, one for sale prices
+        - Can be active for a specific customer group
+        - Can be scheduled for a specific time frame
+- What Price Displays on the Storefront
+    - Price shown on PDP
+        - Site looks at price books assigned to the site that
+            - Are marked active
+            - Valid at the current date and time
+            - Have the current currency
+    - Price shown in cart
+        - Looks at quantity of products in the cart
+        - Valid promotions
+- Demo
+    - Price books
+        - `Based On`
+            - Price books can inherit from/be based on another price book
+            - If a price book is active, the price book it is `Based On` will also be active
+            - If both list and sale prices are active and the list price > sale price, strikethrough pricing will be shown
+- Configuration Tasks
+    - Given a configuration for tasks, such as payment and shipping information, use Business manager to ~~complete storefront orders~~ **allow completion of orders on the storefront**.
+        - Payment Processors
+            - Unclickable processors are OOB
+            - To create a new payment processor
+                - New
+                - Set preferences
+                    - Only preferences that appear are the ones set in the site preferences
+        - Payment Methods
+        - Shipping Methods
+            - New
+            - Add ID, Display Name, and Description
+            - Enable
+            - Based on another snipping method?
+            - Currencies
+            - ETA

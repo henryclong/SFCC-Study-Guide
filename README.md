@@ -20,6 +20,7 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Wednesday](b2c-exam-outline/data-management-using-business-manager-usage.md)
 | [Thursday](b2c-exam-outline/application-development.md)
 | [Exam Notes](b2c-exam-outline/application-development.md)
+| [Merchandising](b2c-exam-outline/merchandising.md)
 
 ## SFCC B2C Exam Outline
 | Exam Contents | Percentage
