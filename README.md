@@ -19,7 +19,7 @@ The Salesforce B2C Commerce Developer exam measures a candidate’s knowledge an
 | [Tuesday](ccd-102/day-2-tuesday.md)
 | [Wednesday](ccd-102/day-3-wednesday.md)
 | [Thursday](ccd-102/day-4-thursday.md)
-| [Exam Notes](ccd-102/day-5-friday.md)
+| [Exam Notes](ccd-102/exam-notes.md)
 | [Merchandising](ccd-102/merchandising.md)
 
 ## SFCC B2C Exam Outline
