@@ -67,7 +67,7 @@
     - [Configure the page cache](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fsite_development%2Fb2c_configure_page_cache.html)
 
 ## Given a specification and a sandbox instance, configure OCAPI permissions for Data and Shop APIs.
-- [OCAPI Settings](https://documentation.b2c.commercecloud.salesforce.com/DOC2/index.jsp?topic=%2Fcom.demandware.dochelp%2Fcontent%2Fb2c_commerce%2Ftopics%2Fgetting_started%2Fb2c_welcome.html)
+- [OCAPI Settings](https://documentation.b2c.commercecloud.salesforce.com/DOC2/index.jsp?topic=%2Fcom.demandware.dochelp%2FOCAPI%2Fcurrent%2Fusage%2FOCAPISettings.html)
 ## Given a service configuration, recognize how they are applicable to the development process.
 - **Web Service Configuration**
     - The Web Service Configuration manages timeout limits, failed call circuit breakers, and rate limits
